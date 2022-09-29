@@ -18,8 +18,9 @@ class Counter extends Component {
                 </span>
                 
                 <button onClick={() => this.handleIncrement(this.state.value)} className="btn btn-warning btn-sm">
-                    Increase {this.props.value}
+                    Increase {this.state.value}
                 </button>
+
                 <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">
                     Delete
                 </button>
