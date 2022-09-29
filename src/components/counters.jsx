@@ -12,7 +12,9 @@ class Counters extends Component {
     };
 
     handleDelete = counterID => {
-        const counters = this.state.counters.filter(c => c.id !== counterID);
+        const filteredCounter = this.state.counters.filter(c => c.id !== counterID);
+        const counters = this.state.filteredCounter;
+        
         this.setState({counters});
     }
 
