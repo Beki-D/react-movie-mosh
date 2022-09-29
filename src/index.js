@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import "./index.css";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.css'
-import Counter from "./components/counter"
+import Counter from "./components/counters"
 
 const container = document.getElementById('root');
 const root = createRoot(container);

@@ -2,58 +2,42 @@ import React, { Component } from 'react'
 
 class Counter extends Component {
     state = { 
-        count: 2,
-        imageUrl: 'https://picsum.photos/200',
-        tags: [1, 2, 3, 4]
-    };
-
-    // constructor() {
-    //     super();
-    //     this.handleIncrement = this.handleIncrement.bind(this);
-    // }
-    
-    renderTags() {
-        if (this.state.tags.length === 0) return <h1>No tags to display</h1>;
-
-        return <ul>{this.state.tags.map(tag => <li key={tag.toString()}>{tag}</li>)}</ul>;
-    }
-
-    styles = {
-        fontSize: 10,
-        fontWeight: "bold"
+        value: this.props.counter.value
     };
 
     handleIncrement = () => {
-        // console.log("Increase clicked", this);
-        this.setState({ count: this.state.count + 1});
+        this.setState({ value: this.state.value + 1});
     };
 
-    render() { 
+    render() {
         return (
             <>
-                <img src={this.state.imageUrl} alt="" />
+                {this.props.children}
                 <span style={this.styles} className={ this.getBadgeClasses() }>
                     {this.formatCount()}
                 </span>
-                <button onClick={this.handleIncrement} className="btn btn-warning btn-sm">Increase</button>
                 
-                {this.state.tags.length === 0 && "Please create a new tag"}
-                {this.renderTags()}
+                <button onClick={() => this.handleIncrement(this.state.value)} className="btn btn-warning btn-sm">
+                    Increase {this.props.value}
+                </button>
+                <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">
+                    Delete
+                </button>
             </>
         );
     }
 
     getBadgeClasses() {
         let classes = "badge m-2 bg-";
-        classes += (this.state.count === 0) ? "warning rounded-pill" : "primary";
+        classes += (this.state.value === 0) ? "warning rounded-pill" : "primary";
         return classes;
     }
 
     formatCount() {
-        const { count } = this.state;
-        const zero = <h1>Nothing to display</h1>
+        const { value: count } = this.state;
+        //const zero = <h1>Nothing to display</h1>
 
-        return count === 0 ? 'zero' : this.state.count;
+        return count === 0 ? 'zero' : this.state.value;
     }
 }
  
