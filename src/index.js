@@ -4,10 +4,9 @@ import { createRoot } from 'react-dom/client';
 import "./index.css";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.css'
-import Counter from "./components/counters"
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-root.render(<Counter tab="home"/>);
+root.render(<App tab="home"/>);
 //ReactDOM.render(<Counter />, document.getElementById("root"));
