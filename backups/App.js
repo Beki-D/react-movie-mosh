@@ -7,22 +7,22 @@ class App extends Component {
   state = { 
     counters: [
         {id: 1, value: 0},
-        {id: 2, value: 0},
-        {id: 3, value: 0},
-        {id: 4, value: 0},
+        {id: 2, value: 10},
+        {id: 3, value: 40},
+        {id: 4, value: 50},
     ]
   };
 
-  // constructor(props) {
-  //   super(props);
-  //   console.log('App - Constructed', this.props);
-  // }
+  constructor(props) {
+    super(props);
+    console.log('App - Constructed', this.props);
+  }
 
-  // //perfect for Ajax applications
-  // componentDidMount() {
-  //   //Ajax call
-  //   console.log("App - Mounted")
-  // }
+  //perfect for Ajax applications
+  componentDidMount() {
+    //Ajax call
+    console.log("App - Mounted")
+  }
 
   handleIncrement = counter => {
       const counters = [...this.state.counters];
@@ -33,19 +33,6 @@ class App extends Component {
       // console.log(this.state.counters[index]);
       this.setState({counters});
   };
-
-  handleDecrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-
-    counters[index] = {...counter};
-    if(counters[index].value > 0){
-      counters[index].value--;
-    }
-
-    this.setState({counters});
-  };
-
 
   handleReset = () => {
       const counters = this.state.counters.map(c => {
@@ -61,7 +48,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log("App - Rendered")
+    console.log("App - Rendered")
     
     return (
       <>
@@ -71,8 +58,7 @@ class App extends Component {
           <Counters 
             counters={this.state.counters}
             onReset={this.handleReset} 
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
+            onIncrement={this.handleIncrement} 
             onDelete={this.handleDelete} 
           />
         </main>
