@@ -28,14 +28,16 @@ class Counter extends Component {
                         </span>
                     </div>
                     <div className="col">
-                        <button onClick={() => this.props.onIncrement(this.props.counter)} className="btn btn-warning btn-sm">
+                        <button 
+                            onClick={() => this.props.onIncrement(this.props.counter)} 
+                            className="btn btn-info btn-sm">
                             +
                         </button>
 
                         <button 
                             onClick={() => this.props.onDecrement(this.props.counter)} 
                             className={ this.getButtonClasses() } 
-                            disbled={this.props.counter.value === 0 ? 'disabled' : ''} >
+                            disabled={this.props.counter.value === 0 ? 'disabled' : ''} >
                             -
                         </button>
 
@@ -56,18 +58,18 @@ class Counter extends Component {
 
     getBadgeClasses() {
         let classes = "badge m-2 bg-";
-        classes += (this.props.counter.value === 0) ? "warning rounded-pill" : "primary";
+        classes += (this.props.counter.value === 0) ? "warning" : "primary";
         return classes;
     }
 
     getButtonClasses() {
-        let classes = "btn btn-secondary btn-sm ms-2 ";
-        classes += (this.props.counter.value === 0) ? "disabled" : "";
+        let classes = "btn btn-sm ms-2 btn-secondary";
+        classes += (this.props.counter.value === 0) ? " disabled" : "";
         return classes;
     }
 
     formatCount() {
-        const {value, id} = this.props.counter;
+        const {value} = this.props.counter;
         //const zero = <h1>Nothing to display</h1>
 
         return value === 0 ? 'zero' : value;
