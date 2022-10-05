@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import MovieTable from "./movieTable";
-import Pagination from "./common/pagination";
 import paginate from "./utils/paginate";
-import List from "./common/list";
 import { getMovies } from "../data/fakeMovieService";
 import { getGenres } from "../data/fakeGenreService";
 import _ from "lodash";
@@ -85,13 +83,6 @@ class Movie extends Component {
 
     return (
       <div className="row">
-        <div className="col-3">
-          <List
-            items={this.state.genres}
-            onListItemClick={this.handleListItemClick}
-            selectedListItem={this.state.selectedGenre}
-          />
-        </div>
         <div className="col">
           <h1 className="main-title">
             Showing {filtered.length} movies in the database
@@ -103,12 +94,7 @@ class Movie extends Component {
             sortColumn={this.state.sortColumn}
             onSort={this.handleSort}
           />
-          <Pagination
-            currentPage={currentPage}
-            totalElements={filtered.length}
-            itemsToShow={itemsToShow}
-            onPageClicked={this.handlePageNumberClicked}
-          />
+          
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import Movie from "./components/movie";
+import Movie from "./components/movies";
 import "./App.css";
 
 export default function App() {
