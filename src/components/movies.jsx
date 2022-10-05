@@ -1,102 +1,89 @@
 import React, { Component } from "react";
-import MovieTable from "./movieTable";
-import paginate from "./utils/paginate";
 import { getMovies } from "../data/fakeMovieService";
-import { getGenres } from "../data/fakeGenreService";
-import _ from "lodash";
+import Like from './common/like'
+import Pagination from './common/pagination'
+import { paginate } from '../utils/paginate'
 
 class Movie extends Component {
   state = {
-    movies: [],
-    genres: [],
-    itemsToShow: 4,
-    currentPage: 1,
-    sortColumn: {
-      topic: "title",
-      direction: "asc"
-    }
+    movies: getMovies(),
+    pageSize: 4,
+    currentPage: 1
   };
-
-  componentDidMount() {
-    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
-    this.setState({ movies: getMovies(), genres });
-  }
 
   handleDelete = movie => {
     const movies = this.state.movies.filter(m => m._id !== movie._id);
     this.setState({ movies });
   };
 
-  handleIconClicked = movieObj => {
-    const likedMovie = [...this.state.movies];
-    const index = likedMovie.indexOf(movieObj);
-    likedMovie[index] = { ...movieObj };
-    likedMovie[index].liked = !likedMovie[index].liked;
+  handleLike = movie => {
+    const movies = [...this.state.movies];
+    const index = movies.indexOf(movie);
+    movies[index] = {...movies[index]};
+    movies[index].liked = !movies[index].liked;
+    this.setState({ movies });
+  }
 
-    this.setState({ movies: likedMovie });
-  };
-
-  handlePageNumberClicked = page => {
+  handlePageChange = page => {
     this.setState({ currentPage: page });
-  };
-
-  handleListItemClick = genre => {
-    // doesn't initialize selectedGenre in the state
-    // because if it's not clicked yet,
-    // it should be undefined
-    this.setState({ selectedGenre: genre, currentPage: 1 });
-  };
-
-  handleSort = sortedObj => {
-    this.setState({ sortColumn: sortedObj });
-  };
+  }
 
   render() {
-    const {
-      movies,
-      itemsToShow,
-      currentPage,
-      selectedGenre,
-      sortColumn
-    } = this.state;
     const { length: count } = this.state.movies;
+    const { pageSize, currentPage, movies: allMovies } = this.state; 
 
     if (count === 0) {
       return (
         <h1 className="main-title">There are no movies in the database.</h1>
       );
     }
-
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? movies.filter(({ genre: { _id } }) => _id === selectedGenre._id)
-        : movies;
-
-    const sorted = _.orderBy(
-      filtered,
-      [sortColumn.topic],
-      [sortColumn.direction]
-    );
-
-    // when the currentPage is changed, on clicked, this render() method re-render again, and this function gets called again with an updated {currentPage}, hence new elements displayed
-    const paginatedMovies = paginate(sorted, currentPage, itemsToShow);
+    
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
-      <div className="row">
-        <div className="col">
-          <h1 className="main-title">
-            Showing {filtered.length} movies in the database
-          </h1>
-          <MovieTable
-            allMovies={paginatedMovies}
-            onItemDelete={this.handleDelete}
-            onIconClick={this.handleIconClicked}
-            sortColumn={this.state.sortColumn}
-            onSort={this.handleSort}
-          />
-          
-        </div>
-      </div>
+      <>
+        <p>Showing {count} movies in the database.</p>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Genre</th>
+              <th>Stock</th>
+              <th>Rate</th>
+              <th />
+              <th />
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {movies.map(movie => (
+              <tr key={movie._id}>
+                <td>{movie.title}</td>
+                <td>{movie.genre.name}</td>
+                <td>{movie.numberInStock}</td>
+                <td>{movie.dailyRentalRate}</td>
+                <td>
+                  <Like liked={movie.liked} onClick={() => this.handleLike(movie)} />
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(movie)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Pagination 
+          itemsCount={count} 
+          pageSize={pageSize} 
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange} 
+        />
+      </>
     );
   }
 }

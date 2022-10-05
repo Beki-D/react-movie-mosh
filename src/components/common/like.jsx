@@ -4,7 +4,7 @@ const Like = props => {
   let classes = "fa fa-heart";
   if (!props.liked) classes += "-o";
 
-  return (
+  return (        
     <i
       onClick={props.onClick}
       style={{ cursor: "pointer" }}
