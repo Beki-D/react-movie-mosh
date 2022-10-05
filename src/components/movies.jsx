@@ -41,16 +41,15 @@ class Movie extends Component {
     const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
-      <>
+      <div className="container p-3">
         <p>Showing {count} movies in the database.</p>
         <table className="table table-striped">
           <thead>
-            <tr>
+            <tr className="bg-secondary rounded-3 text-light">
               <th>Title</th>
               <th>Genre</th>
               <th>Stock</th>
               <th>Rate</th>
-              <th />
               <th />
               <th />
             </tr>
@@ -65,10 +64,10 @@ class Movie extends Component {
                 <td>
                   <Like liked={movie.liked} onClick={() => this.handleLike(movie)} />
                 </td>
-                <td>
+                <td className="d-flex justify-content-end flex-grow-2">
                   <button
                     onClick={() => this.handleDelete(movie)}
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-danger btn-sm flex-grow-1"
                   >
                     Delete
                   </button>
@@ -83,7 +82,7 @@ class Movie extends Component {
           currentPage={currentPage}
           onPageChange={this.handlePageChange} 
         />
-      </>
+      </div>
     );
   }
 }
