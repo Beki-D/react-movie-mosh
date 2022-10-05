@@ -2,13 +2,13 @@
 
 //stateless functional component
 const NavBar = ({totalCounters}) => {
-    console.log("Navbar - Rendered");
+    // console.log("Navbar - Rendered");
 
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container">
                 <a className="navbar-brand col-1" href="#navbar-brand">
-                    Navbar <span className="badge badge-pill bg-secondary">{totalCounters}</span>
+                    Items picked <span className="badge badge-pill bg-secondary">{totalCounters}</span>
                 </a>
             </div>
         </nav>
