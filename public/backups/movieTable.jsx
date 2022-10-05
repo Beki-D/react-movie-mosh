@@ -1,5 +1,5 @@
 import React from "react";
-import Like from "./common/like";
+import Like from "../../src/components/common/like";
 import TableHeader from "./common/tableHeader";
 import TableContent from "./common/tableContent";
 
