@@ -24,6 +24,14 @@ const movies = [
     dailyRentalRate: 3.5
   },
   {
+    _id: "5b21ca3eeb7f6fbccd471818",
+    title: "Shooter",
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    numberInStock: 6,
+    dailyRentalRate: 4.5,
+    publishDate: "2018-01-03T19:04:28.809Z",
+  },
+  {
     _id: "5b21ca3eeb7f6fbccd471819",
     title: "Trip to Italy",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
@@ -34,14 +42,14 @@ const movies = [
     _id: "5b21ca3eeb7f6fbccd47181a",
     title: "Airplane",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-    numberInStock: 7,
+    numberInStock: 5,
     dailyRentalRate: 3.5
   },
   {
     _id: "5b21ca3eeb7f6fbccd47181b",
     title: "Wedding Crashers",
     genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
-    numberInStock: 7,
+    numberInStock: 4,
     dailyRentalRate: 3.5
   },
   {
@@ -60,10 +68,42 @@ const movies = [
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
-    title: "The Avengers",
+    title: "Guardians of the galaxy",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
-    numberInStock: 7,
+    numberInStock: 4,
     dailyRentalRate: 3.5
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471822",
+    title: "Deadpool",
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    numberInStock: 6,
+    dailyRentalRate: 2.5,
+    publishDate: "2018-01-03T19:04:28.809Z",
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471823",
+    title: "Vacation",
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    numberInStock: 5,
+    dailyRentalRate: 2.5,
+    publishDate: "2018-01-03T19:04:28.809Z",
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471824",
+    title: "Nobody",
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    numberInStock: 3,
+    dailyRentalRate: 2.5,
+    publishDate: "2018-01-03T19:04:28.809Z",
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471825",
+    title: "Grown ups",
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    numberInStock: 4,
+    dailyRentalRate: 2.5,
+    publishDate: "2018-01-03T19:04:28.809Z",
   }
 ];
 

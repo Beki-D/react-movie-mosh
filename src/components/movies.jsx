@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import { getMovies } from "../data/fakeMovieService";
 import Like from './common/like'
 import Pagination from './common/pagination'
+import ListGroup from "./common/listGroup";
 import { paginate } from '../utils/paginate'
+// import { getMovies } from "../services/fakeMovieService"
+import { getGenres } from "../data/fakeGenreService"
 
 class Movie extends Component {
   state = {
-    movies: getMovies(),
+    movies: [],
+    genres: [],
     pageSize: 4,
     currentPage: 1
   };
+
+  componentDidMount() {
+    const genres = [{ name: 'All Genres', _id: "-1"}, ...getGenres()]
+    this.setState({ movies: getMovies(), genres })
+  }
 
   handleDelete = movie => {
     const movies = this.state.movies.filter(m => m._id !== movie._id);
@@ -28,9 +37,16 @@ class Movie extends Component {
     this.setState({ currentPage: page });
   }
 
+  handleGenreSelect = genre => {
+    // console.log(genre);
+    this.setState({ selectedGenre: genre, currentPage: 1 });
+  }
+
   render() {
+    console.log(this.state);
+
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, movies: allMovies } = this.state; 
+    const { pageSize, currentPage, selectedGenre, movies: allMovies } = this.state; 
 
     if (count === 0) {
       return (
@@ -38,50 +54,67 @@ class Movie extends Component {
       );
     }
     
-    const movies = paginate(allMovies, currentPage, pageSize);
+    const genreFilteredMovies = 
+      selectedGenre && (selectedGenre._id != -1)
+        ? allMovies.filter(m => m.genre._id === selectedGenre._id) 
+        : allMovies;
+
+    const movies = paginate(genreFilteredMovies, currentPage, pageSize);
 
     return (
-      <div className="container p-3">
-        <p>Showing {count} movies in the database.</p>
-        <table className="table table-striped">
-          <thead>
-            <tr className="bg-secondary rounded-3 text-light">
-              <th>Title</th>
-              <th>Genre</th>
-              <th>Stock</th>
-              <th>Rate</th>
-              <th />
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {movies.map(movie => (
-              <tr key={movie._id}>
-                <td>{movie.title}</td>
-                <td>{movie.genre.name}</td>
-                <td>{movie.numberInStock}</td>
-                <td>{movie.dailyRentalRate}</td>
-                <td>
-                  <Like liked={movie.liked} onClick={() => this.handleLike(movie)} />
-                </td>
-                <td className="d-flex justify-content-end flex-grow-2">
-                  <button
-                    onClick={() => this.handleDelete(movie)}
-                    className="btn btn-danger btn-sm flex-grow-1"
-                  >
-                    Delete
-                  </button>
-                </td>
+      <div className="row container p-3">
+        <div className="col-3">
+          <ListGroup 
+            items={this.state.genres} 
+            // textProperty="name"
+            // valueProperty="_id"
+            selectedItem={this.state.selectedGenre}
+            onItemSelect={this.handleGenreSelect} />
+        </div>
+
+        <div className="col">
+          <p>Showing {genreFilteredMovies.length} movies in the database.</p>
+          <table className="table table-striped">
+            <thead>
+              <tr className="bg-secondary rounded-3 text-light">
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Stock</th>
+                <th>Rate</th>
+                <th />
+                <th />
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <Pagination 
-          itemsCount="abc"
-          pageSize={pageSize} 
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange} 
-        />
+            </thead>
+            <tbody>
+              {movies.map(movie => (
+                <tr key={movie._id}>
+                  <td>{movie.title}</td>
+                  <td>{movie.genre.name}</td>
+                  <td>{movie.numberInStock}</td>
+                  <td>{movie.dailyRentalRate}</td>
+                  <td>
+                    <Like liked={movie.liked} onClick={() => this.handleLike(movie)} />
+                  </td>
+                  <td className="d-flex justify-content-end flex-grow-2">
+                    <button
+                      onClick={() => this.handleDelete(movie)}
+                      className="btn btn-danger btn-sm flex-grow-1"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Pagination 
+            itemsCount={genreFilteredMovies.length} 
+            pageSize={pageSize} 
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange} 
+          />
+        </div>
+
       </div>
     );
   }
