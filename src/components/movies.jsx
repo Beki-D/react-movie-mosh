@@ -4,7 +4,6 @@ import MoviesTable from "./moviesTable";
 import Pagination from './common/pagination'
 import ListGroup from "./common/listGroup";
 import { paginate } from '../utils/paginate'
-// import { getMovies } from "../services/fakeMovieService"
 import { getGenres } from "../data/fakeGenreService"
 import _ from "lodash";
 
