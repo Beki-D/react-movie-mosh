@@ -47,29 +47,14 @@ class Movie extends Component {
     this.setState({ sortColumn, currentPage: 1 });
   }
 
-  render() {
-    // console.log(this.state);
-    //Destructuring this.state
-    const { length: count } = this.state.movies;
-    const { 
-      pageSize, 
-      currentPage, 
-      sortColumn,
-      selectedGenre, 
-      movies: allMovies 
-    } = this.state; 
-
-    if (count === 0) {
-      return (
-        <h1 className="main-title">There are no movies in the database.</h1>
-      );
-    }
+  getPagedData = () => {
+    //Destructuring
+    const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies } = this.state; 
 
     //filtered the movie list
-    const genreFilteredMovies = 
-      selectedGenre && (selectedGenre._id !== '-1')
-        ? allMovies.filter(m => m.genre._id === selectedGenre._id) 
-        : allMovies;
+    const genreFilteredMovies = selectedGenre && (selectedGenre._id !== '-1')
+      ? allMovies.filter(m => m.genre._id === selectedGenre._id) 
+      : allMovies;
 
     //sorted the filtered list based on title first
     const sorted = _.orderBy(genreFilteredMovies, [sortColumn.path], [sortColumn.order]);
@@ -78,19 +63,36 @@ class Movie extends Component {
     //filter -> sort -> paginate
     const movies = paginate(sorted, currentPage, pageSize);
 
+    return { totalCount: genreFilteredMovies.length, data: movies};
+  }
+
+  render() {
+    // console.log(this.state);
+    //Destructuring this.state
+    const { length: count } = this.state.movies;
+    const { pageSize, currentPage, sortColumn, genres, selectedGenre } = this.state; 
+
+    if (count === 0) {
+      return (
+        <h1 className="main-title">There are no movies in the database.</h1>
+      );
+    }
+
+    const { totalCount, data: movies } = this.getPagedData();
+
     return (
       <div className="row container-fluid p-3">
         <div className="col-3">
           <ListGroup 
-            items={this.state.genres} 
+            items={genres} 
             // textProperty="someOthername"
             // valueProperty="_someOtherid"
-            selectedItem={this.state.selectedGenre}
+            selectedItem={selectedGenre}
             onItemSelect={this.handleGenreSelect} />
         </div>
 
         <div className="col">
-          <p>Showing <span className="badge bg-secondary">{genreFilteredMovies.length}</span> movies in the database.</p>
+          <p>Showing <span className="badge bg-secondary">{totalCount + " " + (selectedGenre ? selectedGenre.name : " ")}</span> movies in the database.</p>
           
           <MoviesTable 
             movies={movies}
@@ -101,7 +103,7 @@ class Movie extends Component {
           />
 
           <Pagination 
-            itemsCount={genreFilteredMovies.length} 
+            itemsCount={totalCount} 
             pageSize={pageSize} 
             currentPage={currentPage}
             onPageChange={this.handlePageChange} 
