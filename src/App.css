@@ -1,6 +1,13 @@
 .App {
   text-align: center;
 }
+body {
+  background: cadetblue;
+}
+
+.clickable {
+  cursor: pointer;
+}
 
 /* .pagination {
   color: green;

@@ -79,7 +79,7 @@ class Movie extends Component {
     const movies = paginate(sorted, currentPage, pageSize);
 
     return (
-      <div className="row container p-3">
+      <div className="row container-fluid p-3">
         <div className="col-3">
           <ListGroup 
             items={this.state.genres} 
@@ -90,7 +90,7 @@ class Movie extends Component {
         </div>
 
         <div className="col">
-          <p>Showing {genreFilteredMovies.length} movies in the database.</p>
+          <p>Showing <span className="badge bg-secondary">{genreFilteredMovies.length}</span> movies in the database.</p>
           
           <MoviesTable 
             movies={movies}
@@ -107,6 +107,8 @@ class Movie extends Component {
             onPageChange={this.handlePageChange} 
           />
         </div>
+        
+        <div className="col-1"></div>
 
       </div>
     );
