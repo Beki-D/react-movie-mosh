@@ -1,11 +1,26 @@
-import React from "react";
-import Movie from "./components/movies";
+import React, { Component } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Movies from "./components/movies";
+import Customers from "./components/customers";
+import Rentals from "./components/rentals";
+import NotFound from "./components/notFound";
 import "./App.css";
 
-export default function App() {
-  return (
-    <main>
-      <Movie />
-    </main>
-  );
+class App extends Component {
+  render() {
+    return (
+      <main className="container">
+        <Routes>
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/rentals" element={<Rentals />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="//*" element={ <Navigate to="/movies" />} />
+          <Route path="*" element={ <Navigate to="/not-found" />} />
+        </Routes>
+      </main>
+    );
+  }
 }
+
+export default App;
