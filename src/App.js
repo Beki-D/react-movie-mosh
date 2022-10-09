@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Movies from "./components/movies";
+import Navbar from './components/navbar';
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
@@ -10,6 +11,7 @@ class App extends Component {
   render() {
     return (
       <main className="container">
+        <Navbar />
         <Routes>
           <Route path="/movies" element={<Movies />} />
           <Route path="/customers" element={<Customers />} />

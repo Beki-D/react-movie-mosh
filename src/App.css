@@ -5,6 +5,10 @@ body {
   background: cadetblue;
 }
 
+.navbar {
+  margin-bottom: 2rem;
+}
+
 .clickable {
   cursor: pointer;
 }
