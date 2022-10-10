@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PasswordToggler from './pwdToggler';
-import Password from './password';
+import Input from './common/input';
 
 class LoginForm extends Component {
     state = {
@@ -44,34 +43,26 @@ class LoginForm extends Component {
                 <div className="col-sm-5 col-md-6">
                     <h1>Login</h1>
                     <form onSubmit={this.handleSubmit}>
+                        <Input 
+                            name="username" 
+                            value={account.username}
+                            label="Username"
+                            onChange={this.handleChange}
+                            visibility={true} 
+                        />
                         <div className="mb-3">
-                            <label htmlFor="username" className="form-label">Username</label>
-                            <input
-                                value={account.username}
+                            <Input
+                                name="password"
+                                value={account.password}
+                                label="password"
                                 onChange={this.handleChange}
-                                id="username" name='username'
-                                type="text"
-                                className="form-control" required/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <div className="input-group">
-                                <Password
-                                    handleChange={this.handleChange}
-                                    account={account}
-                                    visibility={passwordVisible}
-                                />
-                                <PasswordToggler
-                                    visibility={passwordVisible}
-                                    onClick={this.handleClick}
-                                />
-                                <span
-                                    id="passwordHelpInline"
-                                    className="form-text ms-2"
-                                >
-                                    Must be 8-20 characters long.
-                                </span>
-                            </div>
+                                visibility={passwordVisible}
+                                handleClick={this.handleClick}
+                            />
+                            
+                            <span id="passwordHelpInline" className="form-text ms-2">
+                                Must be 8-20 characters long.
+                            </span>
                         </div>
                         <button className="btn btn-info">
                             Login
