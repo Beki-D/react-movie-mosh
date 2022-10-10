@@ -15,10 +15,15 @@ const Input = ({ value, onChange, name, label, visibility, handleClick }) => {
                     className="form-control" required 
                 />
                 { name==="password" &&
+                    <>
                     <PasswordToggler
                         visibility={visibility}
                         onClick={handleClick}
-                    />        
+                    />
+                    <span id="passwordHelpInline" className="form-text ms-2">
+                        Must be 8-20 characters long.
+                    </span>
+                    </>        
                 }
             </div>
         </div>   

@@ -59,16 +59,13 @@ class LoginForm extends Component {
                                 visibility={passwordVisible}
                                 handleClick={this.handleClick}
                             />
-                            
-                            <span id="passwordHelpInline" className="form-text ms-2">
-                                Must be 8-20 characters long.
-                            </span>
                         </div>
                         <button className="btn btn-info">
                             Login
                         </button>
                     </form>
                 </div>
+                {/* Needs To be extracted */}
                 <div className="col-sm-5 col-md-6">
                     <div className="card" style={{width: "18rem"}} >
                         <img src="Vidly-logo.png" className="card-img-top p-2 ms-3" alt="..." style={{width: "14rem", height: "14rem"}} />
