@@ -2,9 +2,13 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return ( 
-        <nav className="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
+                    <img 
+                        src="Vidly-logo.png" alt="Vidly logo" 
+                        width="30" height="30" 
+                        className="d-inline-block align-text-top"/>
                     Vidly
                 </Link>
                 <button 

@@ -81,9 +81,6 @@ class Movie extends Component {
 
     return (
       <div className="row container-fluid p-3">
-        {/* <div className="container-fluid">
-          <Navbar />
-        </div> */}
         <div className="col-3">
           <ListGroup 
             items={genres} 

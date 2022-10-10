@@ -7,7 +7,7 @@ const MovieForm = () => {
   return (
     <div>
       <h1>Movie Form : {id}</h1>
-      <button className="btn btn-primary" onClick={() => navigate("../movies", {replace: true})}>Save</button>
+      <button className="btn btn-info" onClick={() => navigate("../movies", {replace: true})}>Save</button>
     </div>
   );
 }

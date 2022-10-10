@@ -5,6 +5,11 @@ body {
   background: cadetblue;
 }
 
+a {
+  text-decoration: none;
+  color:#0dcaf0;
+}
+
 .navbar {
   margin-bottom: 2rem;
 }
