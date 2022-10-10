@@ -5,6 +5,7 @@ import InfoCard from './infoCard';
 class LoginForm extends Component {
     state = {
         account: { username: '', password: '' },
+        errors: { },
         passwordVisible : false
     };
     
@@ -13,22 +14,47 @@ class LoginForm extends Component {
     //Put ref in the element
     // <input ref={this.username}.../>
 
-    componentDidMount() {
-        //Ditch this, just use autofocus
-        // this.username.current.focus();
+    validate = () => {
+        const errors = {};
+
+        const { account } = this.state;
+        if (account.username.trim() === "")
+            errors.username = "Username is required";
+        if (account.password.trim() === "")
+            errors.password = "Password is required";
+        return Object.keys(errors).length === 0 ? null : errors;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        const errors = this.validate();
+        this.setState({ errors: errors || {} });
+        if(errors) return;
+
         //Call server
-        // const username = this.username.current.value;
         console.log('Submitted successfully');
     ;}
 
+    validateProperty = ({name, value}) => {
+        if (name === "username") {
+            if (value.trim() === "") return 'Username is required';
+        }
+        if (name === "password") {
+            if (value.trim() === "") return 'password is required';
+        }
+    }
+
     handleChange = ({ currentTarget: input}) => {
+        const errors = {...this.state.errors};
+        const errorMessage = this.validateProperty(input);
+        if(errorMessage) errors[input.name] = errorMessage;
+        else delete errors[input.name];
+
         const account = {...this.state.account};
         account[input.name] = input.value;
-        this.setState({account});
+
+        this.setState({account, errors});
     }
 
     handleClick = () => {
@@ -37,7 +63,7 @@ class LoginForm extends Component {
     }
 
     render() { 
-        const { account, passwordVisible } = this.state;
+        const { account, passwordVisible, errors } = this.state;
 
         return (
             <div className="row">
@@ -49,7 +75,8 @@ class LoginForm extends Component {
                             value={account.username}
                             label="Username"
                             onChange={this.handleChange}
-                            visibility={true} 
+                            visibility={true}
+                            error={errors.username}
                         />
                         <div className="mb-3">
                             <Input
@@ -59,6 +86,7 @@ class LoginForm extends Component {
                                 onChange={this.handleChange}
                                 visibility={passwordVisible}
                                 handleClick={this.handleClick}
+                                error={errors.password}
                             />
                         </div>
                         <button className="btn btn-info mb-3">

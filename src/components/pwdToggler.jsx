@@ -3,7 +3,7 @@ const PasswordToggler = ({ onClick, visibility }) => {
     if (!visibility) classes = "clickable fa fa-eye-slash"
 
     return (   
-    <span className="input-group-text">
+    <span className="input-group-text mb-3">
         {/* {() => {classes += "-slash"; console.log(classes)} } */}
         <i
             onClick={onClick}

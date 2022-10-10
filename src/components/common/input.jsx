@@ -1,6 +1,6 @@
 import PasswordToggler from "../pwdToggler";
 
-const Input = ({ value, onChange, name, label, visibility, handleClick }) => {
+const Input = ({ value, onChange, name, label, visibility, handleClick, error }) => {
     const type = (visibility) ? "text" : "password";
     
     return ( 
@@ -12,18 +12,26 @@ const Input = ({ value, onChange, name, label, visibility, handleClick }) => {
                     onChange={onChange}
                     id={name} name={name}
                     type={type}
-                    className="form-control" required 
+                    className="form-control mb-3" required 
                 />
+                
                 { name==="password" &&
                     <>
                     <PasswordToggler
                         visibility={visibility}
                         onClick={handleClick}
-                    />
+                        />
+                    </>        
+                }
+                { error && 
+                    <span className="alert alert-danger">
+                        {error}
+                    </span>
+                }
+                { error && name==="password" &&
                     <span id="passwordHelpInline" className="form-text ms-2">
                         Must be 8-20 characters long.
                     </span>
-                    </>        
                 }
             </div>
         </div>   
