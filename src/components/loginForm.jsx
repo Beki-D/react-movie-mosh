@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import PasswordToggler from './pwdToggler';
+import Password from './password';
 
 class LoginForm extends Component {
     state = {
-        account: { username: '', password: '' }
+        account: { username: '', password: '' },
+        passwordVisible : false
     };
     
     //To create a reference
@@ -28,8 +31,13 @@ class LoginForm extends Component {
         this.setState({account});
     }
 
+    handleClick = () => {
+        const currentVisibility = this.state.passwordVisible;
+        this.setState({ passwordVisible:  !currentVisibility});
+    }
+
     render() { 
-        const { username, password } = this.state.account;
+        const { account, passwordVisible } = this.state;
 
         return (
             <div>
@@ -38,7 +46,7 @@ class LoginForm extends Component {
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Username</label>
                         <input 
-                            value={username} 
+                            value={account.username} 
                             onChange={this.handleChange}
                             id="username" name='username' 
                             type="text" 
@@ -47,18 +55,8 @@ class LoginForm extends Component {
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
                         <div className="input-group">
-                            <input 
-                                value={password}
-                                onChange={this.handleChange}
-                                id="password" name="password"
-                                type="password"
-                                className="form-control" required />
-                            <span className="input-group-text">
-                                <i 
-                                    id="togglePassword" 
-                                    className="fa fa-eye clickable"> 
-                                </i>
-                            </span>
+                            <Password handleChange={this.handleChange} account={account} visibility={passwordVisible} />
+                            <PasswordToggler visibility={passwordVisible} onClick={this.handleClick}  />  
                             <span 
                                 id="passwordHelpInline ms-2" 
                                 className="form-text"
