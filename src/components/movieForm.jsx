@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const MovieForm = ({ history }) => {
+const MovieForm = () => {
   let { id } = useParams();
-  // console.log(`/some/${id}`);
+  let navigate = useNavigate();
 
   return (
     <div>
       <h1>Movie Form : {id}</h1>
-      <button className="btn btn-primary" onClick={() => history.push("/movies")}>Save</button>
+      <button className="btn btn-primary" onClick={() => navigate("../movies", {replace: true})}>Save</button>
     </div>
   );
 }
