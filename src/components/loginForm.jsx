@@ -33,23 +33,18 @@ class LoginForm extends Component {
     validate = () => {
         const options = { abortEarly: false };
         const { error } = Joi.validate(this.state.account, this.schema, options);
-        
         if(!error) return null;
 
         const errors = {};
-        for (let item of error.details)
-            errors[item.path[0]] = item.message;
+        for (let item of error.details) errors[item.path[0]] = item.message;
         return errors;
     }
     
     validateProperty = ({name, value}) => {
-        
-        if (name === "username") {
-            if (value.trim() === "") return 'Username is required';
-        }
-        if (name === "password") {
-            if (value.trim() === "") return 'password is required';
-        }
+        const obj = { username: value};
+        const schema = {[name]: this.schema[name]};
+        const {error} = Joi.validate(obj, schema);
+        return error ? error.details[0].message : null;
     }
     
     handleSubmit = (e) => {
@@ -108,7 +103,9 @@ class LoginForm extends Component {
                                 error={errors.password}
                             />
                         </div>
-                        <button className="btn btn-info mb-3">
+                        <button 
+                            disabled={this.validate()}
+                            className="btn btn-info mb-3">
                             Login
                         </button>
                     </form>
