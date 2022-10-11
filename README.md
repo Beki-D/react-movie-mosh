@@ -1,6 +1,6 @@
-This a project I'm working on from Mosh Hamedani's **"Mastering react course"**
+This is a project I'm currently working on from Mosh Hamedani's **"Mastering react course"**
 
-Screenshots m stuff coming soon...
+Screenshots and stuff coming soon...
 
 # Getting Started with Create React App
 
