@@ -1,4 +1,4 @@
-This is a project I'm currently working on from Mosh Hamedani's **"Mastering react course"**
+<h2>This is a project I'm currently working on from Mosh Hamedani's **"Mastering react course"**</h2>
 
 Screenshots and stuff coming soon...
 
