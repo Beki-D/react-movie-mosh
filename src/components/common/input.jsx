@@ -12,7 +12,7 @@ const Input = ({ value, onChange, name, label, visibility, handleClick, error })
                     onChange={onChange}
                     id={name} name={name}
                     type={type}
-                    className="form-control mb-3" required 
+                    className="form-control mb-3"
                 />
                 
                 { name==="password" &&
