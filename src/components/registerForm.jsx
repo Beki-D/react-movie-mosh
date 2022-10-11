@@ -1,16 +1,28 @@
 import Joi from "joi-browser";
 import Form from "./common/form";
+import InfoCard from "./infoCard";
 
 class RegisterForm extends Form {
     state = {
-        data: { username: '', password: '' },
+        data: { username: '', password: '', name: '' },
         errors: { },
         passwordVisible : false
     };
 
     schema = {
-        username: Joi.string().required().label("Username"),
-        password: Joi.string().required().label("Password")
+        username: Joi.string()
+            .min(3).max(30)
+            .required()
+            .email()
+            .label("Username"),
+        password: Joi.string()
+            .min(3).max(30)
+            .required()
+            .label("Password"),
+        name: Joi.string()
+            .min(3).max(30)
+            .required()
+            .label('Name')
     }
 
     doSubmit = () => {
@@ -37,6 +49,7 @@ class RegisterForm extends Form {
                         {this.renderButton("Register")}
                     </form>
                 </div>
+                <InfoCard />
             </div>
         );
     }

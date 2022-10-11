@@ -28,11 +28,11 @@ const Input = ({ value, onChange, name, label, visibility, handleClick, error })
                         {error}
                     </span>
                 }
-                { error && name==="password" &&
+                {/* { error && name==="password" &&
                     <span id="passwordHelpInline" className="form-text ms-2">
                         Must be 8-20 characters long.
                     </span>
-                }
+                } */}
             </div>
         </div>   
     );
