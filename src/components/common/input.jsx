@@ -37,5 +37,5 @@ const Input = ({ value, onChange, name, label, visibility, handleClick, error })
         </div>   
     );
 }
- 
+
 export default Input;
