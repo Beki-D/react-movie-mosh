@@ -1,3 +1,7 @@
+This a project I'm working on from Mosh Hamedani's **"Mastering react course"**
+
+Screenshots m stuff coming soon...
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
