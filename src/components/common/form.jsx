@@ -18,7 +18,6 @@ class Form extends Component {
         return errors;
     }
     
-    
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -37,7 +36,7 @@ class Form extends Component {
         else delete errors[input.name];
 
         const data = {...this.state.data};
-        data[input.name] = input.value;
+        data[input.name] = input.value.trim();
 
         this.setState({data, errors});
     }
@@ -71,10 +70,10 @@ class Form extends Component {
                 visibility={pwdVisible}
                 handleClick={this.handleClick}
                 error={errors[name]}
-            />
-            
+            />    
         );
     }
+    
 }
 
 export default Form;

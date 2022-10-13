@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { getMovies } from "../data/fakeMovieService";
 import MoviesTable from "./moviesTable";
 import Pagination from './common/pagination'
 import ListGroup from "./common/listGroup";
+// import Button from "./common/button";
 import { paginate } from '../utils/paginate'
 import { getGenres } from "../data/fakeGenreService"
 import _ from "lodash";
 
-class Movie extends Component {
+class Movie extends Component {  
   state = {
     movies: [],
     genres: [],
@@ -89,7 +91,9 @@ class Movie extends Component {
             selectedItem={selectedGenre}
             onItemSelect={this.handleGenreSelect} />
         </div>
-
+        
+        <Link className="btn col-4 h-100 btn-primary" to="/newMovie" replace={true}>Add Movie</Link>
+        
         <div className="col">
           <p>Showing <span className="badge bg-secondary">{totalCount + " " + (selectedGenre ? selectedGenre.name : " ")}</span> movies in the database.</p>
           

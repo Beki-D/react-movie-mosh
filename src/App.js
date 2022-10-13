@@ -8,6 +8,7 @@ import NotFound from "./components/notFound";
 import Navbar from './components/navbar';
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
+import NewMovie from './components/newMovie';
 import "./App.css";
 
 // export function withRouter(Children){
@@ -26,6 +27,7 @@ class App extends Component {
         <Routes>
           <Route path="/register" element={<RegisterForm />} /> 
           <Route path="/login" element={<LoginForm />} /> 
+          <Route path="/newmovie" element={<NewMovie />} /> 
           <Route path="/movies/:id" element={<MovieForm />} /> 
           <Route path="/movies" element={<Movies />} />
           <Route path="/customers" element={<Customers />} />
