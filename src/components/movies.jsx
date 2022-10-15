@@ -92,7 +92,7 @@ class Movie extends Component {
             onItemSelect={this.handleGenreSelect} />
         </div>
         
-        <Link className="btn col-4 h-100 btn-primary" to="/newMovie" replace={true}>Add Movie</Link>
+        <Link className="btn col-4 h-100 btn-primary" to="/movies/new" replace={true}>Add Movie</Link>
         
         <div className="col">
           <p>Showing <span className="badge bg-secondary">{totalCount + " " + (selectedGenre ? selectedGenre.name : " ")}</span> movies in the database.</p>

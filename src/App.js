@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Movies from "./components/movies";
 import MovieForm from "./components/movieForm";
 import Customers from "./components/customers";
@@ -8,7 +8,7 @@ import NotFound from "./components/notFound";
 import Navbar from './components/navbar';
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
-import NewMovie from './components/newMovie';
+// import NewMovie from './components/newMovie';
 import "./App.css";
 
 // export function withRouter(Children){
@@ -24,18 +24,20 @@ class App extends Component {
      <>
       <Navbar />
       <main className="container">
-        <Routes>
-          <Route path="/register" element={<RegisterForm />} /> 
-          <Route path="/login" element={<LoginForm />} /> 
-          <Route path="/newmovie" element={<NewMovie />} /> 
-          <Route path="/movies/:id" element={<MovieForm />} /> 
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/rentals" element={<Rentals />} />
-          <Route path="/not-found" element={<NotFound />} />
-          <Route path="//*" element={ <Navigate to="/movies" />} />
-          <Route path="*" element={ <Navigate to="/not-found" />} />
-        </Routes>
+          <Switch>
+            <Route path="/register" component={RegisterForm} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/movies/:id" component={MovieForm} />
+            <Route
+              path="/movies"
+              render={props => <Movies {...props}/>}
+            />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect from="/" exact to="/movies" />
+            <Redirect to="/not-found" />
+          </Switch>
       </main>
      </>
     );
