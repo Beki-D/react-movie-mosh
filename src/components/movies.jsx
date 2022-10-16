@@ -103,9 +103,10 @@ class Movie extends Component {
             selectedItem={selectedGenre}
             onItemSelect={this.handleGenreSelect} />
         </div>
-        
-        <Link className="btn col-4 h-25 btn-primary" to="/movies/new" replace={true}>Add Movie</Link>
-        <SearchBox className="col-4 h-25" value={searchQuery} onChange={this.handleSearch} />
+        <div className="col-auto">
+          <Link className="btn btn-primary" to="/movies/new" replace={true}>Add Movie</Link>
+          <SearchBox className="col-4 h-25" value={searchQuery} onChange={this.handleSearch} />
+        </div>
         <div className="col">
           <p>Showing <span className="badge bg-secondary">{totalCount + " " + (selectedGenre ? selectedGenre.name : " ")}</span> movies in the database.</p>
           
