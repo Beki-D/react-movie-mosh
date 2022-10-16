@@ -1,6 +1,6 @@
 const SearchBox = ({ value, onChange }) => {
-    return ( 
-        <input 
+    return (
+        <input
             type="text"
             name="query"
             className="form-control my-3"
@@ -10,5 +10,5 @@ const SearchBox = ({ value, onChange }) => {
         />
      );
 }
- 
+
 export default SearchBox;
