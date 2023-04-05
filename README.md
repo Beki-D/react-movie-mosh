@@ -1,6 +1,20 @@
+<h1>Vidly movie rental REACT-JS app</h1>
 <h2>This is a project I'm currently working on from Mosh Hamedani's **"Mastering react course"**</h2>
 
-Screenshots and stuff coming soon...
+| Version 1     | Snapshots       | |
+| -------------- | -------------- |-------------- |
+| ![App screenshot](./public/Screenshots/Capture.JPG) | ![App screenshot](./public/Screenshots/Capture0.JPG) | ![App screenshot](./public/Screenshots/Capture1.%20.JPG) | 
+| ![App screenshot](./public/Screenshots/Capture%202.JPG) | ![App screenshot](./public/vidly-logo.png) 
+
+ 
+ 
+  
+  
+
+
+This React project is huge. I am exploring advanced concepts in react and observing my ability to build complex apps develop. I learned a lot about components, props, state, hooks, working with APIs and so much more.
+
+More updates coming soon...
 
 # Getting Started with Create React App
 
